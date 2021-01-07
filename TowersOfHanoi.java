@@ -64,7 +64,7 @@ public class TowersOfHanoi {
       System.out.print("How many disks in your Towers of Hanoi game: ");
       int userDisks = userInput.nextInt();
 
-      // Printing that a solution was found
+      // Printing a note about the disks
       System.out.println("NOTE: Larger numbers represent larger disks");
       System.out.println();
 
