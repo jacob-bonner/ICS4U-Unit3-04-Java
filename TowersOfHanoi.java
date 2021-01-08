@@ -6,7 +6,6 @@
 * @since   2021-01-07
 */
 
-import java.util.ArrayList; // import the ArrayList class
 import java.util.Scanner;  // Import the Scanner class
 
 public class TowersOfHanoi {
