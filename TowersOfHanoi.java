@@ -13,44 +13,24 @@ public class TowersOfHanoi {
   /**
    * This function solves the Towers of Hanoi algorithm. 
    */
-  static void solveTowers(int diskNumber, ArrayList<Integer> fromRod, 
-                          ArrayList<Integer> toRod,
-                          ArrayList<Integer> spareRod) {
-    if (diskNumber > 0) {
-      // Calling the solving function again
-      solveTowers(diskNumber - 1, fromRod, spareRod, toRod);
-
+  static void solveTowers(int diskNumber, char fromRod, char toRod,
+                          char spareRod) {
+    if (diskNumber == 1) {
       // Moving the top disk from one rod to another
-      toRod.add(fromRod.get(fromRod.size() - 1));
-      fromRod.remove(fromRod.size() - 1);
-
-      // Printing the disks on rod A
-      System.out.print("Rod A: ");
-      for (int fromCounter = 0; fromCounter < fromRod.size();
-           fromCounter++) {
-        System.out.print(fromRod.get(fromCounter) + ", ");
-      }
-      System.out.print("     ");
-
-      // Printing the disks on rod B
-      System.out.print("Rod B: ");
-      for (int toCounter = 0; toCounter < toRod.size();
-           toCounter++) {
-        System.out.print(toRod.get(toCounter) + ", ");
-      }
-      System.out.print("     ");
-
-      // Printing the disks on rod C
-      System.out.print("Rod C: ");
-      for (int spareCounter = 0; spareCounter < spareRod.size();
-           spareCounter++) {
-        System.out.print(spareRod.get(spareCounter) + ", ");
-      }
-      System.out.println("");
-
-      // Calling the solving function again
-      solveTowers(diskNumber - 1, spareRod, toRod, fromRod);
+      System.out.println("Moving disk 1 from rod " + fromRod 
+                         + " to rod " + toRod);
+      return;
     }
+
+    // Calling the solving function again
+    solveTowers(diskNumber - 1, fromRod, spareRod, toRod);
+
+    // Printing the move that was taken
+    System.out.println("Moving disk " + diskNumber + " from rod " + fromRod 
+                       + " to rod " + toRod);
+
+    // Calling the solving function again
+    solveTowers(diskNumber - 1, spareRod, toRod, fromRod);
   }
 
   /**
@@ -68,22 +48,12 @@ public class TowersOfHanoi {
       System.out.println("NOTE: Larger numbers represent larger disks");
       System.out.println();
 
-      // Intializing lists that will be used as the rods
-      ArrayList<Integer> firstArray = new ArrayList<Integer>();
-      ArrayList<Integer> secondArray = new ArrayList<Integer>();
-      ArrayList<Integer> thirdArray = new ArrayList<Integer>();
-
-      // Adding numbers to one of the arrays to represent disks
-      for (int counter = 0; counter < userDisks; counter++) {
-        firstArray.add(userDisks - counter);
-      }
-
       // Calling the function that will solve the algorithm
       if (userDisks < 1) {
         // Throwing that an improper integer was entered
         throw null;
       } else {
-        solveTowers(userDisks, firstArray, secondArray, thirdArray);
+        solveTowers(userDisks, 'A', 'C', 'B');
       }
 
       // Printing that a solution was found
